@@ -29,19 +29,11 @@ public class UserDaoImp implements UserDao {
     @Override
     public User byCar(String model, int series) {
         return sessionFactory.getCurrentSession().createQuery("from User where " +
-                        "hisCar.model = :model and hisCar.series = :series", User.class)
-                .setParameter("model", model)
-                .setParameter("series", series)
-                .uniqueResult();
+                        "hisCar.model = ?0 and hisCar.series = ?1", User.class)
+                .setParameter(0, model)
+                .setParameter(1, series)
+                .setMaxResults(1)
+                .getSingleResult();
     }
 }
-/*
-    String hql = "FROM Employee e WHERE e.salary > ? AND e.email LIKE ? AND e.dept = ? "
-            + "ORDER BY e.salary";
 
-    Объект Query вызывает метод setXxx для поддержки стиля программирования цепочки методов.
-        Department dept = new Department();
-		dept.setId(1);
-                query.setFloat(0, 3000)
-                .setParameter(1, "%A%",StringType.INSTANCE)
-                .setEntity(2, dept);*/
