@@ -15,7 +15,7 @@ public class MainApp {
                 new AnnotationConfigApplicationContext(AppConfig.class);
 
         UserService userService = context.getBean(UserService.class);
-        // ПОЧЕМУ В МЕТОДАХ СЕРВИСА СЕССИЯ ОТКРЫВАЕТСЯ, НО НЕ ЗАКРЫВАЕТСЯ?
+
         User user1 = new User("User1", "Lastname1", "user1@mail.ru");
         user1.setHisCar(new Car("Lada", 111111));
         userService.add(user1);
