@@ -19,16 +19,14 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "car_id", referencedColumnName = "id")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     private Car hisCar;
 
-    public Car getHisCar() {
-        return hisCar;
-    }
-
-    public void setHisCar(Car hisCar) {
-        this.hisCar = hisCar;
+    public User(String firstName, String lastName, String email, Car hisCar) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.setHisCar(hisCar); //Меняем присваивание на вызов сеттера
     }
 
     public User() {
@@ -81,5 +79,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Car getHisCar() {
+        return hisCar;
+    }
+
+    public void setHisCar(Car hisCar) {
+        this.hisCar = hisCar;
+        hisCar.setUser(this); //Упрощаем связывание по Алишеву
     }
 }
