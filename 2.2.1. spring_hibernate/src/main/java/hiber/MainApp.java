@@ -37,15 +37,14 @@ public class MainApp {
             System.out.println();
         }
 
-//        SessionFactory sessionFactory = context.getBean(SessionFactory.class);
-//        Session session = sessionFactory.openSession();
-//        session.beginTransaction();
-//        Car car = session.get(Car.class, Long.valueOf(3));
-//        User user = session.get(User.class, Long.valueOf(3));
-//        user.getHisCar().setSeries(123098);
-//        session.getTransaction().commit();
-//
-//        System.out.println((userService.byCar("Toyota", 123098).toString()));
+        SessionFactory sessionFactory = context.getBean(SessionFactory.class);
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        User user = session.get(User.class, Long.valueOf(3));
+        user.getHisCar().setSeries(123098);
+        session.getTransaction().commit();
+
+        System.out.println((userService.byCar("Toyota", 123098).toString()));
 
         context.close();
     }

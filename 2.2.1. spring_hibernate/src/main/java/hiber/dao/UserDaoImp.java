@@ -2,7 +2,6 @@ package hiber.dao;
 
 import hiber.model.User;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
@@ -11,8 +10,14 @@ import java.util.List;
 @Repository
 public class UserDaoImp implements UserDao {
 
-    @Autowired
-    private SessionFactory sessionFactory;
+    // УБИРАЕМ @Autowired С ПОЛЯ
+    private SessionFactory sessionFactory; //ПОДВЯЗЫВАЕТСЯ ИЗ
+    // public LocalSessionFactoryBean getSessionFactory() ???? И ЕСЛИ ДА, ТО КАК????
+    // ПО ИЕРАРХИИ НАСЛЕДОВАНИЯ???? КТО ОТ КОГО НАСЛЕДУЕТСЯ\РЕАЛИЗУЕТСЯ???
+
+    public UserDaoImp(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public void add(User user) {

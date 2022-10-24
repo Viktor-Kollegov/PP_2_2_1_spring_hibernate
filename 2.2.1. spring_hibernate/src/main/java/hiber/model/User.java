@@ -26,17 +26,11 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.hisCar= hisCar;
+        this.hisCar = hisCar;
         hisCar.setUser(this); //Связываем с двух сторон
     }
 
     public User() {
-    }
-
-    public User(String firstName, String lastName, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
     }
 
     @Override
