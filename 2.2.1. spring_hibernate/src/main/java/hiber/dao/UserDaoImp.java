@@ -27,12 +27,17 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public User byCar(String model, int series) {
-        return sessionFactory.getCurrentSession().createQuery("from User where " +
-                        "hisCar.model = ?0 and hisCar.series = ?1", User.class)
-                .setParameter(0, model)
-                .setParameter(1, series)
-                .setMaxResults(1)
-                .getSingleResult();
+        try {
+            return sessionFactory.getCurrentSession().createQuery("from User where " +
+                            "hisCar.model = ?0 and hisCar.series = ?1", User.class)
+                    .setParameter(0, model)
+                    .setParameter(1, series)
+                    .setMaxResults(1)
+                    .getSingleResult();
+        } catch (Exception e) {
+            System.out.println("В базе данных нет пользователя для данного автомобиля, либо автомобиля не существует.");
+        }
+        return null;
     }
 }
 
