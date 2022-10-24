@@ -26,7 +26,8 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.setHisCar(hisCar); //Меняем присваивание на вызов сеттера
+        this.hisCar= hisCar;
+        hisCar.setUser(this); //Связываем с двух сторон
     }
 
     public User() {
@@ -85,8 +86,7 @@ public class User {
         return hisCar;
     }
 
-    public void setHisCar(Car hisCar) {
+    private void setHisCar(Car hisCar) {
         this.hisCar = hisCar;
-        hisCar.setUser(this); //Упрощаем связывание по Алишеву
     }
 }
