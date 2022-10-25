@@ -30,7 +30,7 @@ public class AppConfig {
     }
 
     @Bean
-    public DataSource getDataSource() { //ГДЕ У НАС ИСПОЛЬЗУЕТСЯ ДАННЫЙ БИН?????
+    public DataSource getDataSource() { //ГДЕ У НАС ИСПОЛЬЗУЕТСЯ ДАННЫЙ БИН????? для получения сессии через подтягивание гибернейтом и jpa нашей реализации
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(env.getProperty("db.driver"));
         dataSource.setUrl(env.getProperty("db.url"));
@@ -39,7 +39,7 @@ public class AppConfig {
         return dataSource;
     }
 
-    @Bean // ТИПО ПОТОКОБЕЗОПАСНАЯ ЛОКАЛЬНАЯ СЕССИЯ???
+    @Bean // ТИПО ПОТОКОБЕЗОПАСНАЯ ЛОКАЛЬНАЯ СЕССИЯ??? ко второму ревью
     public LocalSessionFactoryBean getSessionFactory() {
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
         factoryBean.setDataSource(getDataSource());
@@ -53,7 +53,7 @@ public class AppConfig {
         return factoryBean;
     }
 
-    @Bean  // ЭТОТ БИН НУЖЕН ДЛЯ РАБОТЫ АННОТАЦИЙ @TRANSACTIONAL ИЛИ ДЛЯ ЧЕГО-ТО ЕЩЁ???
+    @Bean  // ЭТОТ БИН НУЖЕН ДЛЯ РАБОТЫ АННОТАЦИЙ @TRANSACTIONAL ИЛИ ДЛЯ ЧЕГО-ТО ЕЩЁ??? ко второму ревью
     public HibernateTransactionManager getTransactionManager() {
         HibernateTransactionManager transactionManager = new HibernateTransactionManager();
         transactionManager.setSessionFactory(getSessionFactory().getObject());

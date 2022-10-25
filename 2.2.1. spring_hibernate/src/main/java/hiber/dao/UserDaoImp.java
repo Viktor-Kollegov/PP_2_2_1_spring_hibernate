@@ -1,5 +1,6 @@
 package hiber.dao;
 
+import hiber.model.Car;
 import hiber.model.User;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -40,9 +41,9 @@ public class UserDaoImp implements UserDao {
                     .setMaxResults(1)
                     .getSingleResult();
         } catch (Exception e) {
-            System.out.println("В базе данных нет пользователя для данного автомобиля, либо автомобиля не существует.");
+            System.out.println("В базе данных нет пользователя для " + new Car(model, series) + ", либо автомобиля не существует.");
         }
-        return null;
+        return new User("", "", "", new Car(model, series));
     }
 }
 

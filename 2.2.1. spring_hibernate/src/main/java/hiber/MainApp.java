@@ -45,6 +45,7 @@ public class MainApp {
         session.getTransaction().commit();
 
         System.out.println((userService.byCar("Toyota", 123098).toString()));
+        System.out.println((userService.byCar("SomeCar", 123098).toString()));
 
         context.close();
     }
